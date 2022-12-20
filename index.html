@@ -1,0 +1,82 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TodoList</title>
+    <style>
+      h1 {
+        color: brown;
+        text-align: center;
+      }
+      div {
+        text-align: center;
+      }
+
+      table {
+        width: 300px;
+        padding: 5px 15px;
+        border: 1px solid black;
+        margin: 20px auto;
+      }
+
+      th {
+        color: white;
+        background-color: red;
+      }
+      td {
+        border: 1px solid black;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To Do Organizer</h1>
+    <div>
+      <input type="text" />
+      <input type="button" value="AddRow" />
+    </div>
+    <table>
+      <tr>
+        <th>Done</th>
+        <th>Task</th>
+        <th>Delete</th>
+      </tr>
+    </table>
+
+    <script>
+      document
+        .querySelector("input[type=button]")
+        .addEventListener("click", function () {
+          var createdtr = document.createElement("tr");
+          var tdone = document.createElement("td");
+          var tdtwo = document.createElement("td");
+          var tdelete = document.createElement("td");
+          document.getElementsByTagName("table")[0].appendChild(createdtr);
+
+          tdone.innerHTML = ' <input type="checkbox" name="" id="a">';
+
+          tdtwo.innerText = document.querySelector("input[type=text]").value;
+
+          tdelete.innerHTML = "<button >Delete</button>";
+          tdone.addEventListener("change", function () {
+            if (tdtwo.style.textDecoration == "line-through") {
+              tdtwo.style.textDecoration = "none";
+            } else {
+              tdtwo.style.textDecoration = "line-through";
+            }
+          });
+          tdelete.addEventListener("click", function () {
+            if (tdone.children[0].checked) {
+              var res = confirm("Are You Sure To Delete!");
+              if (res) createdtr.remove();
+            }
+          });
+          createdtr.appendChild(tdone);
+          createdtr.appendChild(tdtwo);
+          createdtr.appendChild(tdelete);
+        });
+      //end of click
+    </script>
+  </body>
+</html>
